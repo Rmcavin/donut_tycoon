@@ -1,0 +1,72 @@
+body {
+  background-color: #aeecdb;
+}
+
+#radialBurst {
+  width: 100vw;
+  height: 250px;
+}
+
+header {
+  position: relative;
+  text-align: center;
+  width: 100vw;
+  height: 250px;
+}
+
+#title {
+  font-family: 'Lobster Two';
+  font-size: 60px;
+  color: white;
+  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+section {
+  margin: auto;
+  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  width: 80%;
+  min-height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#leftSpan {
+  flex: 1 1 50%;
+  margin: 20px 0px 20px 20px;
+}
+
+#rightSpan {
+  flex: 1 1 40%;
+  margin: 20px 20px 20px 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #6bcbb1;
+}
+
+h2 {
+  font-family: 'Lobster Two';
+  color: #6bcbb1;
+  font-size: 30px;
+}
+
+button {
+  color: white;
+  outline: lightgrey;
+}
+
+#glazedDonuts {
+  width: 80%;
+  height: auto;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
