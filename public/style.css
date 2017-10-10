@@ -71,7 +71,6 @@ button {
   color: #6bcbb1;
   outline: none;
   border: 1px solid lightgrey;
-
 }
 
 #glazedDonuts {
@@ -115,4 +114,26 @@ li {
   float: right;
   margin: 10px;
   display: inline;
+}
+
+form {
+  margin-left: 20px;
+}
+
+input[type=text]{
+  border: 1px solid lightgrey;
+}
+
+label {
+  display: block;
+  width: 150px;
+}
+
+input[type=submit] {
+  display: block;
+  margin-top: 10px;
+  background-color: white;
+  color: #6bcbb1;
+  outline: none;
+  border: 1px solid lightgrey;
 }

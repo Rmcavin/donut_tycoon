@@ -5,38 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
   <title>Donut Tycoon</title>
 </head>
 <body>
   <header>
-    <img src="radialBurst.png" alt="Radial Burst Header Background" id='radialBurst'>
+    <img src="/radialBurst.png" alt="Radial Burst Header Background" id='radialBurst'>
     <h1 id = 'title'>Donut Tycoon</h1>
   </header>
 
   <section>
-      <h2 id = 'pageTitle'>All Available Donuts</h2>
+      <h2 id = 'pageTitle'>Edit a Donut</h2>
       <div id='buttonBox'>
         <button id='homeButton'><a href="/">Home</a></button>
         <button id='loginButton'><a href="/">Login</a></button>
         <button id='signupButton'><a href="/">Sign Up</a></button>
       </div>
-      <ul>
-      <% donuts.forEach( (donut) => { %>
-        <li>
-          <div id='buttonBox'>
-            <button button id='editEntry'><a href='/donuts/<%=donut.id%>/edit'>Edit</a></button>
-            <button id='deleteEntry'>x</button>
-          </div>
-          <div>
-            <h4> <a href= '/donuts/<%=donut.id%>' > <%= donut.name %> </a></h4>
-            <p> Topping: <%= donut.topping %> </p>
-            <p> Price: <%= (donut.price) %> </p>
-          </div>
-            </li>
-            <hr>
-        <% }) %>
-      </ul>
+
+      <form method='POST' action="/donuts">
+        <label>Name:</label><input type="text" name='name' placeholder='<%=donut.name%>'>
+        <label>Topping:</label><input type="text" name='topping' placeholder='<%=donut.topping%>'>
+        <label>Price:</label><input type="text" name='price' placeholder='<%=donut.price%> (cents)'>
+        <input type="submit">
+      </form>
   </section>
   <footer>
     A full stack web app by <a href="http://www.rachelcavin.com">Rachel Cavin</a>.

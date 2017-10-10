@@ -20,7 +20,9 @@ router.get('/:id', (req, res) => {
 
 //get a page to edit/update a particular shop with a form
 router.get('/:id/edit', (req, res) => {
-  res.send(`you are editing ${req.params.id}`)
+  knex('shops').select('*').where({id:req.params.id}).first().then( (shop) => {
+    res.render('../views/Shops/edit.ejs', {shop:shop})
+  })
 })
 
 //update an existing shop, then redirect to all shops to see update

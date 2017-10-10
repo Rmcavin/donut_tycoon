@@ -34,4 +34,10 @@ router.get('/:id', (req, res) => {
   })
 })
 
+router.get('/:id/edit', (req, res) => {
+  knex('donuts').select('*').where({id:req.params.id}).first().then( (donut) => {
+    res.render('../views/Donuts/edit.ejs', {donut: donut})
+  })
+})
+
 module.exports = router;
