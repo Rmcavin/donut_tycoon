@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
       table.increments('id') //increments is PK
       table.string('name')
       table.string('city')
-      table.timestamps()
+      table.timestamps(true, true)
     })
   ])
 };

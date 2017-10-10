@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
       table.string('name')
       table.string('topping')
       table.integer('price')
-      table.timestamps()
+      table.timestamps(true, true)
     })
   ])
 };

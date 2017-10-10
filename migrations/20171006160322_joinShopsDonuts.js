@@ -2,13 +2,11 @@
 exports.up = function(knex, Promise) {
   return Promise.all( [
     knex.schema.createTable('shops_donuts', function(table) {
-      table.increments('id')
+      table.increments('id');
 
-      table.integer('shop_id')
-      table.foreign('shop_id').references('shops.id')
+      table.integer('shop_id').notNullable().references('id').inTable('shops').onDelete('CASCADE');
 
-      table.integer('donut_id')
-      table.foreign('donut_id').references('donuts.id')
+      table.integer('donut_id').notNullable().references('id').inTable('donuts').onDelete('CASCADE');
 
     })
   ])
