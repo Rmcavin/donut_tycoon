@@ -57,7 +57,7 @@ const donutRecords = [
     request.get('/donuts/1/edit')
     .expect(200)
     .end( (err, res) => {
-      expect(res.text).to.contain('banana');
+      expect(res.text).to.contain('Edit a Donut');
       done()
     })
   })
