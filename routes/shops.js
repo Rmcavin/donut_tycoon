@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 //get a page to create a new shop
 router.get('/new', (req, res) => {
-  res.render('../views/shops/NOTCREATEDYET')
+  res.send('new shop')
 })
 
 //create a new shop, then redirect to all shops to see update
@@ -22,7 +22,7 @@ router.post('/shops', (req, res) => {
   })
 })
 
-//get one shop
+//get a shop by id
 router.get('/:id', (req, res) => {
   //get a particular donut
   knex('shops').select('*').where({id:req.params.id}).first().then( (shop) => {

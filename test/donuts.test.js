@@ -63,8 +63,32 @@ const donutRecords = [
   })
 
   //send an update for a particular donut
-  xit('should update a page for a donut', (done) => {
-      //write this test!
+  it('should update a page for a donut', (done) => {
+      let newDonut = {name: 'raspberry filled', topping: 'none', price: 200}
+      request.patch('/donuts/2')
+      .send(newDonut)
+      .end( (err, res) => {
+        request.get('/donuts')
+        .expect(200)
+        .end( (err, res) => {
+          expect(res.text).to.contain('All Available Donuts');
+          expect(res.text).to.contain('raspberry filled')
+          done()
+        })
+      })
     })
+
+  it('should delete a donut record', (done) => {
+    request.delete('/donuts/2')
+    .end( (err, res) => {
+      request.get('/donuts')
+      .expect(200)
+      .end( (err, res) => {
+        expect(res.text).to.contain('All Available Donuts');
+        expect(res.text).to.not.contain('raspberry filled')
+        done()
+      })
+    })
+  })
 
 })

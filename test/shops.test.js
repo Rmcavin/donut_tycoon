@@ -78,5 +78,17 @@ const shopRecords = [
       })
     })
 
+  it('should delete a shop record', (done) => {
+    request.delete('/shops/1')
+    .end( (err, res) => {
+      request.get('/shops')
+      .expect(200)
+      .end( (err, res) => {
+        expect(res.text).to.contain('All Shop Locations');
+        expect(res.text).to.not.contain('Donut Delight')
+        done()
+      })
+    })
+  })
 
 })
