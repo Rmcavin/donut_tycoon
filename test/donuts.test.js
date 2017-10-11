@@ -63,7 +63,7 @@ const donutRecords = [
   })
 
   //send an update for a particular donut
-  it('should update a page for a donut', (done) => {
+  xit('should update a page for a donut', (done) => {
       //write this test!
     })
 

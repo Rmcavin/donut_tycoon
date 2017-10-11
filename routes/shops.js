@@ -10,6 +10,18 @@ router.get('/', (req, res) => {
   })
 })
 
+//get a page to create a new shop
+router.get('/new', (req, res) => {
+  res.render('../views/shops/NOTCREATEDYET')
+})
+
+//create a new shop, then redirect to all shops to see update
+router.post('/shops', (req, res) => {
+  knex('shops').insert(req.body).then( () => {
+    res.redirect('/shops');
+  })
+})
+
 //get one shop
 router.get('/:id', (req, res) => {
   //get a particular donut
@@ -26,11 +38,17 @@ router.get('/:id/edit', (req, res) => {
 })
 
 //update an existing shop, then redirect to all shops to see update
+router.patch('/:id', (req, res) => {
+  knex('shops').where({id:req.params.id}).update(req.body).then(() => {
+    res.redirect('/shops');
+  })
+})
 
 //delete an existing shop, then redirect to all shops to see update
-
-//get a page to create a new shop
-
-//create a new shop, then redirect to all shops to see update
+router.delete('/:id', (req,res) => {
+  knex('shops').where({id:req.params.id}).del().then( () => {
+    res.redirect('/shops');
+  })
+})
 
 module.exports = router;

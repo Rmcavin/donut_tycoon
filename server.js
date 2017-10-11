@@ -1,12 +1,14 @@
 //bring in express and body parser
 const express = require('express');
 const app = express();
+const methodOverride = require('method-override')
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8080;
 
-//set up body parser
+//set up body parser, methodoverride, and public directory
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
 //bring in the routes file

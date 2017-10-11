@@ -63,7 +63,20 @@ const shopRecords = [
 
   //send an update for a particular shop
   it('should update a page for a shop', (done) => {
-      //write this test!
+    let newShop = {name: 'Donut Delight', city: 'Austin'}
+      request.patch('/shops/1')
+      .send(newShop)
+      .end( (err, res) => {
+        //simulate the redirect route to check for update
+        request.get('/shops')
+        .expect(200)
+        .end( (err, res) => {
+          expect(res.text).to.contain('All Shop Locations');
+          expect(res.text).to.contain('Donut Delight')
+          done()
+        })
+      })
     })
+
 
 })

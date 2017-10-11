@@ -116,7 +116,7 @@ li {
   display: inline;
 }
 
-form {
+#fullForm {
   margin-left: 20px;
 }
 
@@ -136,4 +136,16 @@ input[type=submit] {
   color: #6bcbb1;
   outline: none;
   border: 1px solid lightgrey;
+}
+
+#editEntry {
+  display: inline;
+}
+
+#buttonOnlyForm {
+  display: inline;
+}
+
+#deleteEntry {
+  display:inline;
 }

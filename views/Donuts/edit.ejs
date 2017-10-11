@@ -22,7 +22,7 @@
         <button id='signupButton'><a href="/">Sign Up</a></button>
       </div>
 
-      <form method='POST' action="/donuts">
+      <form id = 'fullForm' method='POST' action="/donuts/<%=donut.id%>?_method=PATCH">
         <label>Name:</label><input type="text" name='name' placeholder='<%=donut.name%>'>
         <label>Topping:</label><input type="text" name='topping' placeholder='<%=donut.topping%>'>
         <label>Price:</label><input type="text" name='price' placeholder='<%=donut.price%> (cents)'>

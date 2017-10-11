@@ -26,7 +26,9 @@
           <li>
             <div id='buttonBox'>
               <button id='editEntry'><a href='/shops/<%=shop.id%>/edit'>Edit</a></button>
-              <button id='deleteEntry'>x</button>
+              <form id='buttonOnlyForm' method="POST" action='/shops/<%=shop.id%>?_method=DELETE'>
+                <input id='deleteEntry' type="submit" value='x'>
+              </form>
             </div>
             <div>
               <h4> <a href='/shops/<%=shop.id%>'> <%= shop.name %> </a> </h4>

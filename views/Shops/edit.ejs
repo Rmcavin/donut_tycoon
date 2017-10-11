@@ -22,7 +22,7 @@
         <button id='signupButton'><a href="/">Sign Up</a></button>
       </div>
 
-      <form method='POST' action="/shops">
+      <form id = 'fullForm' method='POST' action="/shops/<%=shop.id%>?_method=PATCH">
         <label>Name:</label><input type="text" name='name' placeholder='<%=shop.name%>'>
         <label>City:</label><input type="text" name='city' placeholder='<%=shop.city%>'>
         <input type="submit">
