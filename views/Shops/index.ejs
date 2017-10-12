@@ -17,16 +17,16 @@
   <section>
       <h2 id = 'pageTitle'>All Shop Locations</h2>
       <div id='buttonBox'>
-        <button id='homeButton'><a href="/">Home</a></button>
-        <button id='loginButton'><a href="/">Login</a></button>
-        <button id='signupButton'><a href="/">Sign Up</a></button>
+        <a href="/"><button id='homeButton'>Home</button></a>
+        <a href="/"><button id='loginButton'>Login</button></a>
+        <a href="/"><button id='signupButton'>Sign Up</button></a>
       </div>
-      <button id = 'newButton'><a href="/shops/new">Add a Shop</a></button>
+      <a href="/shops/new"><button id = 'newButton'>Add a Shop</button></a>
       <ul>
         <% shops.forEach( (shop) => { %>
           <li>
             <div id='buttonBox'>
-              <button id='editEntry'><a href='/shops/<%=shop.id%>/edit'>Edit</a></button>
+              <a href='/shops/<%=shop.id%>/edit'><button id='editEntry'>Edit</button></a>
               <form id='buttonOnlyForm' method="POST" action='/shops/<%=shop.id%>?_method=DELETE'>
                 <input id='deleteEntry' type="submit" value='x'>
               </form>

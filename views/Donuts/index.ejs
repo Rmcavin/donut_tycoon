@@ -17,16 +17,16 @@
   <section>
       <h2 id = 'pageTitle'>All Available Donuts</h2>
       <div id='buttonBox'>
-        <button id='homeButton'><a href="/">Home</a></button>
-        <button id='loginButton'><a href="/">Login</a></button>
-        <button id='signupButton'><a href="/">Sign Up</a></button>
+        <a href="/"><button id='homeButton'>Home</button></a>
+        <a href="/"><button id='loginButton'>Login</button></a>
+        <a href="/"><button id='signupButton'>Sign Up</button></a>
       </div>
-      <button id = 'newButton'><a href="/donuts/new">Add a Donut</a></button>
+      <a href="/donuts/new"><button id = 'newButton'>Add a Donut</button></a>
       <ul>
       <% donuts.forEach( (donut) => { %>
         <li>
           <div id='buttonBox'>
-            <button button id='editEntry'><a href='/donuts/<%=donut.id%>/edit'>Edit</a></button>
+            <a href='/donuts/<%=donut.id%>/edit'><button button id='editEntry'>Edit</button></a>
             <form id='buttonOnlyForm' method='POST' action="/donuts/<%=donut.id%>?_method=DELETE">
               <input id='deleteEntry' type="submit" value='x'>
             </form>

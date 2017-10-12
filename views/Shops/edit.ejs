@@ -17,9 +17,9 @@
   <section>
       <h2 id = 'pageTitle'>Edit a Shop</h2>
       <div id='buttonBox'>
-        <button id='homeButton'><a href="/">Home</a></button>
-        <button id='loginButton'><a href="/">Login</a></button>
-        <button id='signupButton'><a href="/">Sign Up</a></button>
+        <a href="/"><button id='homeButton'><a href="/">Home</button></a>
+        <a href="/"><button id='loginButton'><a href="/">Login</button></a>
+        <a href="/"><button id='signupButton'><a href="/">Sign Up</button></a>
       </div>
 
       <form id = 'fullForm' method='POST' action="/shops/<%=shop.id%>?_method=PATCH">

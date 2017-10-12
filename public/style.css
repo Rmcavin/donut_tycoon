@@ -73,6 +73,15 @@ button {
   border: 1px solid lightgrey;
 }
 
+button:hover {
+  color: white;
+  background-color: #6bcbb1;
+}
+
+button a:hover {
+  color: white;
+}
+
 #glazedDonuts {
   width: 80%;
   height: auto;
@@ -136,6 +145,11 @@ input[type=submit] {
   color: #6bcbb1;
   outline: none;
   border: 1px solid lightgrey;
+}
+
+input[type=submit]:hover{
+  color: white;
+  background-color: #6bcbb1;
 }
 
 #editEntry {

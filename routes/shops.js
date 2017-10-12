@@ -65,7 +65,6 @@ function donutsAtAShop(shopID) {
   .innerJoin('shops_donuts', 'shop_id', 'shops.id')
   .innerJoin('donuts', 'donut_id', 'donuts.id')
   .then( (shopDonuts) => {
-    console.log(shopDonuts);
     return shopDonuts;
   })
 }
