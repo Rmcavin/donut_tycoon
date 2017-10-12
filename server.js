@@ -24,6 +24,14 @@ app.get('/', (req, res) => {
 app.use('/shops', shops);
 app.use('/donuts', donuts)
 
+app.use(function (err, req, res, next) {
+  if (err) {
+    console.error(err.stack)
+    res.status(500).send('Something broke! <br /> ' + err)
+  }
+})
+
+
 //listen on the port
 app.listen(PORT);
 
