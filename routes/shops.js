@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
   //get a particular donut
   knex('shops').select('*').where({id:req.params.id}).first().then( (shop) => {
     console.log('the name is ', shop.name);
-    donutsAtAShop(shop.name)
+    donutsAtAShop(shop.id)
     .then(function (donuts) {
       //console.log('donuts: ', availDonuts);
       res.render('../views/Shops/show.ejs', {shop:shop, donuts:donuts})
@@ -60,12 +60,12 @@ module.exports = router;
 
 
 //===================Helpers=====================
-function donutsAtAShop(shopName) {
-  return knex('shops').select('shops.name', 'donuts.name', 'donuts.id').where('shops.name', shopName)
+function donutsAtAShop(shopID) {
+  return knex('shops').select('shops.name as shop_name', 'donuts.name', 'donuts.id').where('shops.id', shopID)
   .innerJoin('shops_donuts', 'shop_id', 'shops.id')
   .innerJoin('donuts', 'donut_id', 'donuts.id')
   .then( (shopDonuts) => {
-    console.log('the donuts: ', shopDonuts);
+    console.log(shopDonuts);
     return shopDonuts;
   })
 }

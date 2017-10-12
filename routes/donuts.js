@@ -8,13 +8,7 @@ router.get('/', (req, res) => {
   knex('donuts').select('*').then( (donuts) => {
     //format price correctly
     donuts.forEach( (donut) => {
-      donut.price = (donut.price / 100);
-      if (Number.isInteger(donut.price)) {
-        donut.price = (donut.price) + '.00';
-      }
-      if (donut.price.toString().length == 3) {
-        donut.price = (donut.price) + '0';
-      }
+      donut = priceCheck(donut);
     })
     res.render('../views/Donuts/index.ejs', {donuts:donuts});
   })
@@ -36,14 +30,8 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   //get a particular donut
   knex('donuts').select('*').where({id:req.params.id}).first().then( (donut) => {
-    donut.price = (donut.price / 100);
-    if (Number.isInteger(donut.price)) {
-      donut.price = (donut.price) + '.00';
-    }
-    if (donut.price.toString().length == 3) {
-      donut.price = (donut.price) + '0';
-    }
-    shopsWithDonut(donut.name)
+    donut = priceCheck(donut);
+    shopsWithDonut(donut.id)
     .then(function (shops) {
       //console.log('donuts: ', availDonuts);
       res.render('../views/Donuts/show.ejs', {donut:donut, shops:shops})
@@ -76,11 +64,22 @@ router.delete('/:id', (req,res) => {
 module.exports = router;
 
 //===================Helpers=====================
-function shopsWithDonut(donutName) {
-  return knex('donuts').select('donuts.name', 'shops.name', 'shops.id').where('donuts.name', donutName)
+function shopsWithDonut(donutID) {
+  return knex('donuts').select('donuts.name', 'shops.name', 'shops.id').where('donuts.id', donutID)
   .innerJoin('shops_donuts', 'donut_id', 'donuts.id')
   .innerJoin('shops', 'shop_id', 'shops.id')
   .then( (shopDonuts) => {
     return shopDonuts;
   })
+}
+
+function priceCheck(product) {
+  product.price = (product.price / 100);
+  if (Number.isInteger(product.price)) {
+    product.price = (product.price) + '.00';
+  }
+  if (product.price.toString().length == 3) {
+    product.price = (product.price) + '0';
+  }
+  return product;
 }
