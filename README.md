@@ -6,10 +6,10 @@ This is a web application meant to demonstrate my skills in creating full stack 
 ## Technologies Used
 
 #### Front End
-  The pages are created using EJS for templating. These pages are served by my express server and styled using CSS.
+  The pages are created using EJS for templating. These pages are served by my Express server and styled using CSS.
 
 #### Back End
-  This app runs in Node.js with Express handling the server routing. I use additional libraries such a body parser and method override to add additional utilities to Express. My database is PostgreSQL, and I use knex.js as my Query Builder.
+  This app runs in Node.js with Express handling the server routing. I use additional libraries such a body parser and method override to add additional utilities to Express. My database is PostgreSQL, and I use knex.js as my Query Builder. I utilized additional features of knex, such as seeds and migrations to structure my database schema and populate it with sample data. 
 
   I will soon add authentication using Bcrypt.
 
@@ -19,4 +19,4 @@ This is a web application meant to demonstrate my skills in creating full stack 
 
 
 #### Deployment
-  The app can be viewed at https://donutfullstackdemo.herokuapp.com/shops.
+  The app can be viewed at https://donutfullstackdemo.herokuapp.com.
