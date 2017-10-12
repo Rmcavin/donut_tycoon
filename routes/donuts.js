@@ -22,13 +22,13 @@ router.get('/', (req, res) => {
 
 //get a page to create a new donut
 router.get('/new', (req, res) => {
-  res.send('new donut')
+  res.render('../views/Donuts/new.ejs')
 })
 
 //create a new donut, then redirect to all donuts to see update
-router.post('/donuts', (req, res) => {
+router.post('/', (req, res) => {
   knex('donuts').insert(req.body).then( () => {
-    res.redirect('/shops')
+    res.redirect('/donuts')
   })
 })
 
@@ -43,9 +43,15 @@ router.get('/:id', (req, res) => {
     if (donut.price.toString().length == 3) {
       donut.price = (donut.price) + '0';
     }
-    res.render('../views/Donuts/show.ejs', {donut:donut});
+    shopsWithDonut(donut.name)
+    .then(function (shops) {
+      //console.log('donuts: ', availDonuts);
+      res.render('../views/Donuts/show.ejs', {donut:donut, shops:shops})
+    });
   })
 })
+  //  res.render('../views/Donuts/show.ejs', {donut:donut});
+
 
 //get a page to edit/update a particular donut with a form
 router.get('/:id/edit', (req, res) => {
@@ -68,3 +74,13 @@ router.delete('/:id', (req,res) => {
   })
 })
 module.exports = router;
+
+//===================Helpers=====================
+function shopsWithDonut(donutName) {
+  return knex('donuts').select('donuts.name', 'shops.name', 'shops.id').where('donuts.name', donutName)
+  .innerJoin('shops_donuts', 'donut_id', 'donuts.id')
+  .innerJoin('shops', 'shop_id', 'shops.id')
+  .then( (shopDonuts) => {
+    return shopDonuts;
+  })
+}

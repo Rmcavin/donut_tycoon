@@ -41,6 +41,32 @@ const shopRecords = [
     })
   })
 
+  //receive a page to add a new shop record
+  it('should show a page for adding a new shop', (done) => {
+    request.get('/shops/new')
+    .expect(200)
+    .end( (err, res) => {
+      expect(res.text).to.contain('Add a new Shop')
+      done()
+    })
+  })
+
+  //add a new shop record, then redirect to the shops page to show update
+  it('should add a new shop record', (done) => {
+    let newShop = {name: 'Delish Donuts', city: 'North Austin'}
+    request.post('/shops')
+    .send(newShop)
+    .end( (err, res) => {
+      request.get('/shops')
+      .expect(200)
+      .end( (err,res) => {
+        expect(res.text).to.contain('All Shop Locations')
+        expect(res.text).to.contain('Delish Donuts')
+        done()
+      })
+    })
+  })
+
   //receive a particular shop by id
   it('should return a page with a single shop', (done) => {
     request.get('/shops/1')
@@ -63,9 +89,9 @@ const shopRecords = [
 
   //send an update for a particular shop
   it('should update a page for a shop', (done) => {
-    let newShop = {name: 'Donut Delight', city: 'Austin'}
+    let updateShop = {name: 'Donut Delight', city: 'Austin'}
       request.patch('/shops/1')
-      .send(newShop)
+      .send(updateShop)
       .end( (err, res) => {
         //simulate the redirect route to check for update
         request.get('/shops')
@@ -78,6 +104,7 @@ const shopRecords = [
       })
     })
 
+  //delete a shop record, then redirect to shops page to see update
   it('should delete a shop record', (done) => {
     request.delete('/shops/1')
     .end( (err, res) => {

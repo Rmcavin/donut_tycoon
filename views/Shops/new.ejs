@@ -11,26 +11,22 @@
 <body>
   <header>
     <img src="/radialBurst.png" alt="Radial Burst Header Background" id='radialBurst'>
-    <h1 id='title'>Donut Tycoon</h1>
+    <h1 id = 'title'>Donut Tycoon</h1>
   </header>
 
   <section>
-      <h2 id = 'pageTitle'><%=shop.name%></h2>
+      <h2 id = 'pageTitle'>Add a Location</h2>
       <div id='buttonBox'>
         <button id='homeButton'><a href="/">Home</a></button>
         <button id='loginButton'><a href="/">Login</a></button>
         <button id='signupButton'><a href="/">Sign Up</a></button>
       </div>
-      <ul>
-          <li>Location: <%=(shop.city)%></li>
-      </ul>
-      <h4>Available Donuts</h4>
-      <ul>
-      <% donuts.forEach( (donut) => { %>
-        <li><a href="/donuts/<%=donut.id%>"><%=donut.name%></a></li>
-        <hr>
-      <% }); %>
-      </ul>
+
+      <form id = 'fullForm' method='POST' action="/shops">
+        <label>Name:</label><input type="text" name='name'>
+        <label>City:</label><input type="text" name='city'>
+        <input type="submit">
+      </form>
   </section>
   <footer>
     A full stack web app by <a href="http://www.rachelcavin.com">Rachel Cavin</a>.

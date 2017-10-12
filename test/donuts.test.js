@@ -42,6 +42,32 @@ const donutRecords = [
     })
   })
 
+  //receive a page to add a new donut record
+  it('should show a page for adding a new donut', (done) => {
+    request.get('/donuts/new')
+    .expect(200)
+    .end( (err,res) => {
+      expect(res.text).to.contain('new donut')
+      done()
+    })
+  })
+
+  //add a new donut record, then redirect to donuts page to show update
+  it('should add a new donut record', (done) => {
+    let newDonut = {name: 'blueberry filled', topping: 'none', price: 200}
+    request.post('/donuts')
+    .send(newDonut)
+    .end( (err, res) => {
+      request.get('/donuts')
+      .expect(200)
+      .end( (err,res) => {
+        expect(res.text).to.contain('All Available Donuts');
+        expect(res.text).to.not.contain('blueberry filled')
+        done()
+      })
+    })
+  })
+
   //receive a particular donuts by id
   it('should return a page with a single donut', (done) => {
     request.get('/donuts/1')
@@ -64,9 +90,9 @@ const donutRecords = [
 
   //send an update for a particular donut
   it('should update a page for a donut', (done) => {
-      let newDonut = {name: 'raspberry filled', topping: 'none', price: 200}
+      let updateDonut = {name: 'raspberry filled', topping: 'none', price: 200}
       request.patch('/donuts/2')
-      .send(newDonut)
+      .send(updateDonut)
       .end( (err, res) => {
         request.get('/donuts')
         .expect(200)
@@ -78,6 +104,7 @@ const donutRecords = [
       })
     })
 
+//delete a donut record, then redirect to donuts page to see update
   it('should delete a donut record', (done) => {
     request.delete('/donuts/2')
     .end( (err, res) => {

@@ -12,11 +12,11 @@ router.get('/', (req, res) => {
 
 //get a page to create a new shop
 router.get('/new', (req, res) => {
-  res.send('new shop')
+  res.render('../views/Shops/new.ejs')
 })
 
 //create a new shop, then redirect to all shops to see update
-router.post('/shops', (req, res) => {
+router.post('/', (req, res) => {
   knex('shops').insert(req.body).then( () => {
     res.redirect('/shops');
   })
@@ -26,7 +26,12 @@ router.post('/shops', (req, res) => {
 router.get('/:id', (req, res) => {
   //get a particular donut
   knex('shops').select('*').where({id:req.params.id}).first().then( (shop) => {
-    res.render('../views/Shops/show.ejs', {shop:shop})
+    console.log('the name is ', shop.name);
+    donutsAtAShop(shop.name)
+    .then(function (donuts) {
+      //console.log('donuts: ', availDonuts);
+      res.render('../views/Shops/show.ejs', {shop:shop, donuts:donuts})
+    });
   })
 })
 
@@ -52,3 +57,15 @@ router.delete('/:id', (req,res) => {
 })
 
 module.exports = router;
+
+
+//===================Helpers=====================
+function donutsAtAShop(shopName) {
+  return knex('shops').select('shops.name', 'donuts.name', 'donuts.id').where('shops.name', shopName)
+  .innerJoin('shops_donuts', 'shop_id', 'shops.id')
+  .innerJoin('donuts', 'donut_id', 'donuts.id')
+  .then( (shopDonuts) => {
+    console.log('the donuts: ', shopDonuts);
+    return shopDonuts;
+  })
+}

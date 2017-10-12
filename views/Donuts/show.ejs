@@ -25,6 +25,13 @@
           <li>Topping: <%=donut.topping%></li>
           <li>Price: <%=donut.price%></li>
       </ul>
+      <h4>Available at these Locations</h4>
+      <ul>
+      <% shops.forEach( (shop) => { %>
+        <li><a href="/shops/<%=shop.id%>"><%=shop.name%></a></li>
+        <hr>
+      <% }); %>
+      </ul>
   </section>
   <footer>
     A full stack web app by <a href="http://www.rachelcavin.com">Rachel Cavin</a>.

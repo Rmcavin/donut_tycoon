@@ -149,3 +149,12 @@ input[type=submit] {
 #deleteEntry {
   display:inline;
 }
+
+#newButton {
+  display:block;
+  margin: 5px 10px 5px 30px;
+}
+
+h4 {
+  margin-left: 30px;
+}
