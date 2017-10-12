@@ -30,10 +30,8 @@ router.post('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   //get a particular donut
   knex('shops').select('*').where({id:req.params.id}).first().then( (shop) => {
-    console.log('the name is ', shop.name);
     donutsAtAShop(shop.id)
     .then(function (donuts) {
-      //console.log('donuts: ', availDonuts);
       res.render('../views/Shops/show.ejs', {shop:shop, donuts:donuts})
     });
   }).catch( (err) => {

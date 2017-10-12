@@ -37,7 +37,6 @@ router.get('/:id', (req, res, next) => {
     donut = priceCheck(donut);
     shopsWithDonut(donut.id)
     .then(function (shops) {
-      //console.log('donuts: ', availDonuts);
       res.render('../views/Donuts/show.ejs', {donut:donut, shops:shops})
     })
     }).catch( (err) => {
